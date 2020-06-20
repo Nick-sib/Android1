@@ -7,10 +7,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_UserName"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -23,16 +24,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="0dp"
 
-        android:layout_marginBottom="200dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_UserName"
-
         tools:listitem="@layout/select_city_item" />
-
 
 
     <Switch
@@ -41,9 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
 
+        android:onClick="delme_fun"
+
         android:text="Темная тема"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_recycler_view" />
+        app:layout_constraintStart_toStartOf="@id/barrier"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -52,7 +52,7 @@
         android:layout_marginTop="5dp"
         android:text="просто настройка"
         app:layout_constraintStart_toStartOf="@id/s_black_them"
-        app:layout_constraintTop_toBottomOf="@id/s_black_them"/>
+        app:layout_constraintTop_toBottomOf="@id/s_black_them" />
 
 
     <TextView
@@ -62,9 +62,10 @@
         android:layout_marginTop="10dp"
         android:text="0"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkBox"/>
+        app:layout_constraintStart_toStartOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/checkBox" />
+
     <Button
         android:id="@+id/b_delme"
         android:layout_width="wrap_content"
@@ -73,8 +74,15 @@
 
         android:onClick="delme_fun"
 
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_delme"/>
+        app:layout_constraintStart_toStartOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/tv_delme" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="til_UserName,list_recycler_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
