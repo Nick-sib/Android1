@@ -1,5 +1,6 @@
 package com.jako.android_meteo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,8 +23,8 @@ class SelectCity: AppCompatActivity() {
 
         if (savedInstanceState != null) {
             instanceState = "Повторный запуск!"
-            checkBox.isChecked = savedInstanceState!!.getBoolean(MESSAGE_CHECKBOX, false)
-        }
+        } else
+            checkBox.isChecked = intent.extras?.getBoolean(MESSAGE_CHECKBOX, false)?: false
 
 
         tv_delme.text = "${Singleton.clickCount}"
