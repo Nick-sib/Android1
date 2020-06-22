@@ -24,7 +24,7 @@ class SelectCity: AppCompatActivity() {
         if (savedInstanceState != null) {
             instanceState = "Повторный запуск!"
         } else
-            checkBox.isChecked = intent.extras?.getBoolean(MESSAGE_CHECKBOX, false)?: false
+            checkBox.isChecked = intent.getBooleanExtra(MESSAGE_CHECKBOX, false)
 
 
         tv_delme.text = "${Singleton.clickCount}"
