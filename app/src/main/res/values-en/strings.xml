@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android_meteo</string>
+
+    <string-array name="citys_array">
+        <item>Amsterdam</item>
+        <item>Andorra la Vella</item>
+        <item>Athens</item>
+        <item>Belgrade</item>
+        <item>Berlin</item>
+        <item>Berne</item>
+        <item>Bratislava</item>
+        <item>Brussels</item>
+        <item>Budapest</item>
+        <item>Bucharest</item>
+        <item>Vaduz</item>
+        <item>Valletta</item>
+        <item>Warsaw</item>
+        <item>Vatican</item>
+        <item>Vein</item>
+        <item>Vilnius</item>
+        <item>Dublin</item>
+        <item>Zagreb</item>
+        <item>Kiev</item>
+        <item>Kishinev</item>
+        <item>Copenhagen</item>
+        <item>Lisbon</item>
+        <item>London</item>
+        <item>Ljubljana</item>
+        <item>Luxembourg</item>
+        <item>Madrid</item>
+        <item>Minsk</item>
+        <item>Monaco</item>
+        <item>Moscow</item>
+        <item>Novosibirsk</item>
+        <item>Oslo</item>
+        <item>Paris</item>
+        <item>Podgorica</item>
+        <item>Prague</item>
+        <item>Reykjavik</item>
+        <item>Riga</item>
+        <item>Rome</item>
+        <item>San marino</item>
+        <item>Sarajevo</item>
+        <item>Skopje</item>
+        <item>Sofia</item>
+        <item>Stockholm</item>
+        <item>Tirana</item>
+        <item>Tallinn</item>
+        <item>Helsinki</item>
+    </string-array>
+    <string name="invate_input_city_name">Imput city name</string>
+    <string name="tab_text_1">Weather in the city</string>
+    <string name="tab_text_2">The citys</string>
+    <string name="tab_text_3">text2</string>
+</resources>
