@@ -1,11 +1,7 @@
 package com.jako.android_meteo
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import com.google.android.material.internal.ContextUtils.getActivity
-import java.security.AccessController.getContext
+import com.jako.android_meteo.ui.main.TAG
 
 /**может не совсем безопасно но будет один глобальный объект */
 

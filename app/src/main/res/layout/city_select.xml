@@ -22,7 +22,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_recycler_view"
+        android:id="@+id/rv_citys"
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
@@ -31,7 +31,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_UserName"
 
-        tools:listitem="@layout/select_city_item" />
+        tools:listitem="@layout/select_city_item"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 
@@ -43,7 +44,7 @@
 
         android:text="Темная тема"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_recycler_view" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_citys" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -70,8 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="INC"
-
-        android:onClick="delme_fun"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

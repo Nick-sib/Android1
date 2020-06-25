@@ -1,29 +1,91 @@
 package com.jako.android_meteo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.jako.testtask_eastwind.ui.main.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.city_select.*
 
 
 class MainActivity : AppCompatActivity() {
     val ClassName = "MainActivity.class"
 
+    //lateinit var sectionsPagerAdapter: SectionsPagerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        b_Setting.setOnClickListener {
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = view_pager
+        viewPager.adapter = sectionsPagerAdapter
+
+
+        /*b_Setting.setOnClickListener {
                 startActivity(Intent(this, SelectCity::class.java).apply{
                     putExtra(MESSAGE_CHECKBOX, true)
-                })}
+                })}*/
 
 
 
-        Toast.makeText(this, "$ClassName : onCreate", Toast.LENGTH_SHORT).show()
-        Log.d(TAG, "$ClassName : onCreate")
+        logSteps("onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        logSteps("onStart")
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        logSteps("onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        logSteps("onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        logSteps("onDestroy")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        logSteps("onSaveInstanceState")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        logSteps("onRestoreInstanceState")
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        logSteps("onStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+
+        logSteps("onRestart")
+    }
+
+
+    private fun logSteps(text: String) {
+        Toast.makeText(this, "$ClassName : $text", Toast.LENGTH_SHORT).show()
+        Log.d(com.jako.android_meteo.ui.main.TAG, "$ClassName : $text")
     }
 }

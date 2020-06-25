@@ -23,7 +23,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_recycler_view"
+        android:id="@+id/rv_citys"
         android:layout_width="400dp"
         android:layout_height="0dp"
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
 
-        android:onClick="delme_fun"
+
 
         android:text="Темная тема"
         app:layout_constraintStart_toStartOf="@id/barrier"
@@ -83,6 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="til_UserName,list_recycler_view"/>
+        app:constraint_referenced_ids="til_UserName,rv_citys" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Android_meteo</string>
     <string name="invate_input_city_name">Введите имя города</string>
+    <string name="tab_text_1">Погода в городе</string>
+    <string name="tab_text_2">Выбор города</string>
+    <string name="tab_text_3">text2</string>
 
-    <string-array name="citysList">
+    <string-array name="citys_array">
         <item>Амстердам</item>
         <item>Андорра-ла-Велья</item>
         <item>Афины</item>
@@ -32,6 +35,7 @@
         <item>Минск</item>
         <item>Монако</item>
         <item>Москва</item>
+        <item>Новосибирск</item>
         <item>Осло</item>
         <item>Париж</item>
         <item>Подгорица</item>
@@ -48,4 +52,7 @@
         <item>Таллин</item>
         <item>Хельсинки</item>
     </string-array>
+
+
+
 </resources>
