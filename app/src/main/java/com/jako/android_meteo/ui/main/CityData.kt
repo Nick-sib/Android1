@@ -21,7 +21,7 @@ import java.util.*
 class CityData : Fragment(), OnItemListClick {
 
     private lateinit var pageViewModel: PageViewModel
-    private val delmeData = FloatArray(24)
+    private val delmeData = DoubleArray(24)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class CityData : Fragment(), OnItemListClick {
         val root = inflater.inflate(R.layout.data_city, container, false)
 
         for (i in delmeData.indices) {
-            delmeData[i] = 29 + (5*random.nextFloat()-3)
+            delmeData[i] = 29 + (5 * random.nextDouble() - 3)
         }
         root.linechart.setChartData(delmeData, "Понедельник")
         //val textView: TextView = root.findViewById(R.id.section_label)

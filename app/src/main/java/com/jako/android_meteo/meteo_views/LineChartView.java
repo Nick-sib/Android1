@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
+import java.util.Arrays;
+
 import static java.lang.Math.ceil;
 
 public class LineChartView extends View {
@@ -17,6 +19,7 @@ public class LineChartView extends View {
     private static final int MAX_LINES = 7;
     private static final int[] DISTANCES = { 1, 2, 5 };
     private static final float GRAPH_SMOOTHNES = 0.15f;
+    double min;
 
     private Dynamics[] datapoints;
     private String dataText;
@@ -43,21 +46,23 @@ public class LineChartView extends View {
 
 
 
-    public void setChartData(float[] newDatapoints, String dataText) {
+    public void setChartData(double[] newDatapoints, String dataText) {
         this.dataText = dataText;
-
         long now = AnimationUtils.currentAnimationTimeMillis();
+        min = Arrays.stream(newDatapoints).min().getAsDouble();
+
+
         if (datapoints == null || datapoints.length != newDatapoints.length) {
             datapoints = new Dynamics[newDatapoints.length];
             for (int i = 0; i < newDatapoints.length; i++) {
                 datapoints[i] = new Dynamics(70f, 0.50f);
-                datapoints[i].setPosition(newDatapoints[i], now);
-                datapoints[i].setTargetPosition(newDatapoints[i], now);
+                datapoints[i].setPosition((float) (newDatapoints[i] - min), now);
+                datapoints[i].setTargetPosition((float) (newDatapoints[i] - min), now);
             }
             invalidate();
         } else {
             for (int i = 0; i < newDatapoints.length; i++) {
-                datapoints[i].setTargetPosition(newDatapoints[i], now);
+                datapoints[i].setTargetPosition((float) (newDatapoints[i] - min), now);
             }
             removeCallbacks(animator);
             post(animator);
@@ -97,7 +102,7 @@ public class LineChartView extends View {
 
             // turn on anti alias again for the text
             paint.setAntiAlias(true);
-            canvas.drawText(String.valueOf(y), getPaddingLeft(), yPos - 2, paint);
+            canvas.drawText(String.valueOf((int)(y + min)), getPaddingLeft(), yPos - 2, paint);
         }
     }
 

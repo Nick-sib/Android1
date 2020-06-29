@@ -30,6 +30,21 @@ class MainActivity : AppCompatActivity() {
                 })}*/
 
 
+        mService = Common.retrofitService
+        mService.getMovieList().enqueue(object : Callback<MutableList<City_Data>> {
+            override fun onFailure(call: Call<MutableList<City_Data>>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<MutableList<City_Data>>, response: Response<MutableList<City_Data>>) {
+                adapter = MyMovieAdapter(baseContext, response.body() as MutableList<City_Data>)
+                adapter.notifyDataSetChanged()
+                recyclerMovieList.adapter = adapter
+
+                dialog.dismiss()
+            }
+
+        })
 
         logSteps("onCreate")
     }
