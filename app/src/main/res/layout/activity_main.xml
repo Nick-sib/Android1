@@ -7,6 +7,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <!--Button
+        android:id="@+id/b_Setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        android:text="setting"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
@@ -17,6 +34,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
         tools:listitem="@layout/city_line_open"
-        tools:itemCount="20"/>
+        tools:itemCount="20"/-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
