@@ -21,7 +21,7 @@ import java.util.*
 class CityData : Fragment(), OnItemListClick {
 
     private lateinit var pageViewModel: PageViewModel
-    private val delmeData = DoubleArray(24)
+    private val delmeData = DoubleArray(7)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +39,8 @@ class CityData : Fragment(), OnItemListClick {
         for (i in delmeData.indices) {
             delmeData[i] = 29 + (5 * random.nextDouble() - 3)
         }
-        root.linechart.setChartData(delmeData, "Понедельник")
-        //val textView: TextView = root.findViewById(R.id.section_label)
+        root.linechart.setChartData(delmeData, "Недельный прогноз")
+
        // pageViewModel.text.observe(this, Observer<String> {
           //  textView.setText(R.string.tab_text_1)
         //})

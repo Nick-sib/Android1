@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jako.android_meteo.R
 import com.jako.android_meteo.Singleton
 import com.jako.android_meteo.adapters.CityListAdapter
@@ -19,7 +22,7 @@ const val MESSAGE_CHECKBOX = "com.jako.android_meteo.checkBox"
 
 class SelectCity: Fragment() {
 
-
+    private val ANIMATION_DURATION = 200L
 
     /*val CITY_ARRAY_NAME = Array(CITY_ARRAY_INDEX.size)
     {i -> context?.resources?.getString(CITY_ARRAY_INDEX[i]) }*/
@@ -45,18 +48,11 @@ class SelectCity: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.city_select, container, false)
-        //val textView: TextView = root.findViewById(R.id.section_label)
-        // pageViewModel.text.observe(this, Observer<String> {
+        //pageViewModel.text.observe(this, Observer<String> {
         //textView.setText(R.string.tab_text_1)
         //})
 
-        root.rv_citys.adapter =
-            CityListAdapter(
-                    resources.getStringArray(R.array.citys_array)
-                ).apply {
-
-                    onItemListClickListener = parentFragmentManager.fragments[0] as CityData
-                }
+        setupAdapter(root)
 
         root.b_delme.setOnClickListener {
             tv_delme.text = "${++Singleton.clickCount}"
@@ -65,6 +61,27 @@ class SelectCity: Fragment() {
         root.tv_delme.text = "${Singleton.clickCount}"
 
         return root
+    }
+
+    fun setupAdapter(root: View) {
+        root.rv_citys.setHasFixedSize(true)
+
+        root.rv_citys.addItemDecoration(
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                .apply {setDrawable(context!!.getDrawable(R.drawable.separator)!!)})
+
+        root.rv_citys.itemAnimator = DefaultItemAnimator().apply {
+            addDuration = ANIMATION_DURATION
+            removeDuration = ANIMATION_DURATION
+        }
+
+        root.rv_citys.adapter =
+            CityListAdapter(
+                resources.getStringArray(R.array.citys_array)
+            ).apply {
+
+                onItemListClickListener = parentFragmentManager.fragments[0] as CityData
+            }
     }
 
 

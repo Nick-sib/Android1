@@ -13,15 +13,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     val ClassName = "MainActivity.class"
 
-    //lateinit var sectionsPagerAdapter: SectionsPagerAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = view_pager
-        viewPager.adapter = sectionsPagerAdapter
+        view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
 
 
         /*b_Setting.setOnClickListener {
@@ -30,21 +26,7 @@ class MainActivity : AppCompatActivity() {
                 })}*/
 
 
-        mService = Common.retrofitService
-        mService.getMovieList().enqueue(object : Callback<MutableList<City_Data>> {
-            override fun onFailure(call: Call<MutableList<City_Data>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
 
-            override fun onResponse(call: Call<MutableList<City_Data>>, response: Response<MutableList<City_Data>>) {
-                adapter = MyMovieAdapter(baseContext, response.body() as MutableList<City_Data>)
-                adapter.notifyDataSetChanged()
-                recyclerMovieList.adapter = adapter
-
-                dialog.dismiss()
-            }
-
-        })
 
         logSteps("onCreate")
     }
@@ -100,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun logSteps(text: String) {
-        Toast.makeText(this, "$ClassName : $text", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "$ClassName : $text", Toast.LENGTH_SHORT).show()
         Log.d(com.jako.android_meteo.ui.main.TAG, "$ClassName : $text")
     }
 }
