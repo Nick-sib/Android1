@@ -1,10 +1,13 @@
 package com.jako.android_meteo.ui.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -52,9 +55,27 @@ class SelectCity: Fragment() {
         //textView.setText(R.string.tab_text_1)
         //})
 
+        root.tiet_Filter.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                s!!
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                s!!
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                s!!
+                (root.rv_citys.adapter as CityListAdapter).applyFilter(s.toString().toLowerCase())
+            }
+
+        })
+
+
         setupAdapter(root)
 
         root.b_delme.setOnClickListener {
+            (root.rv_citys.adapter as CityListAdapter).applyFilter("са")
             tv_delme.text = "${++Singleton.clickCount}"
         }
 
@@ -77,7 +98,7 @@ class SelectCity: Fragment() {
 
         root.rv_citys.adapter =
             CityListAdapter(
-                resources.getStringArray(R.array.citys_array)
+                resources.getStringArray(R.array.citys_array).toList()
             ).apply {
 
                 onItemListClickListener = parentFragmentManager.fragments[0] as CityData
