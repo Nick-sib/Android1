@@ -23,17 +23,6 @@
 
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-        tools:listitem="@layout/city_line_open"
-        tools:itemCount="20"/-->
+        app:layout_constraintTop_toTopOf="parent"/-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

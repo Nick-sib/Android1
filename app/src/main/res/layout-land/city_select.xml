@@ -36,56 +36,38 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
-    <Switch
-        android:id="@+id/s_black_them"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-
-
-
-        android:text="Темная тема"
-        app:layout_constraintStart_toStartOf="@id/barrier"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="просто настройка"
-        app:layout_constraintStart_toStartOf="@id/s_black_them"
-        app:layout_constraintTop_toBottomOf="@id/s_black_them" />
-
-
-    <TextView
-        android:id="@+id/tv_delme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/barrier"
-        app:layout_constraintTop_toBottomOf="@id/checkBox" />
-
-    <Button
-        android:id="@+id/b_delme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INC"
-
-        android:onClick="delme_fun"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/barrier"
-        app:layout_constraintTop_toBottomOf="@id/tv_delme" />
-
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
         app:constraint_referenced_ids="til_UserName,rv_citys" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_cancel"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/button_margin"
+
+        android:text="@string/b_back"
+        android:onClick="button_click"
+
+        app:layout_constraintBottom_toBottomOf="@+id/mb_apply"
+        app:layout_constraintEnd_toStartOf="@+id/mb_apply"
+        app:layout_constraintTop_toTopOf="@+id/mb_apply" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/button_margin"
+        android:layout_marginBottom="@dimen/button_margin"
+
+        android:text="@string/b_apply"
+        android:onClick="button_click"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

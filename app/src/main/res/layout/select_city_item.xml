@@ -10,8 +10,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <TextView
-        android:id="@+id/tv_CityLine"
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/mcb_CityLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

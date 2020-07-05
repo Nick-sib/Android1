@@ -21,41 +21,7 @@ class CityListAdapter(private var workList: List<String>):
                     it.toLowerCase().contains(value.toLowerCase())
             } else ArrayList(fullList)
         notifyDataSetChanged()
-
-        /*val exampleFilter = object : Filter() {
-            override fun performFiltering(constraint: CharSequence): FilterResults {
-                val filteredList: MutableList<String> = ArrayList()
-
-                if (constraint == null || constraint.length == 0) {
-                    filteredList.addAll(fullList)
-                } else {
-                    val filterPattern =
-                        constraint.toString().toLowerCase().trim { it <= ' ' }
-                    for (item in fullList) {
-                        if (item.getText2().toLowerCase().contains(filterPattern)) {
-                            filteredList.add(item)
-                        }
-                    }
-                }
-                val results = FilterResults()
-                results.values = filteredList
-                return results
-            }
-
-            override fun publishResults(
-                constraint: CharSequence,
-                results: FilterResults
-            ) {
-                workList.clear()
-                workList.addAll(results.values as List<*>)
-                notifyDataSetChanged()
-            }
-        }*/
-
     }
-
-
-
 
 
 

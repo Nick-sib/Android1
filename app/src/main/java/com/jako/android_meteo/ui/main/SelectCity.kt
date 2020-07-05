@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -56,30 +57,16 @@ class SelectCity: Fragment() {
         //})
 
         root.tiet_Filter.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                s!!
-            }
+            override fun afterTextChanged(s: Editable) { }
 
-            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                s!!
-            }
+            override fun beforeTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) { }
 
-            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                s!!
+            override fun onTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) {
                 (root.rv_citys.adapter as CityListAdapter).applyFilter(s.toString().toLowerCase())
             }
-
         })
 
-
         setupAdapter(root)
-
-        root.b_delme.setOnClickListener {
-            (root.rv_citys.adapter as CityListAdapter).applyFilter("са")
-            tv_delme.text = "${++Singleton.clickCount}"
-        }
-
-        root.tv_delme.text = "${Singleton.clickCount}"
 
         return root
     }
@@ -134,7 +121,6 @@ class SelectCity: Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putBoolean(MESSAGE_CHECKBOX, checkBox.isChecked)
 
         logSteps("onSaveInstanceState")
     }
@@ -146,15 +132,6 @@ class SelectCity: Fragment() {
 
         logSteps("onStop")
     }
-
-
-    /*override fun onClick(view: View) {
-        when (view.id) {
-            R.id.b_delme -> tv_delme.text = "${++Singleton.clickCount}"
-            R.id.s_black_them -> Singleton.isBlackThem = s_black_them.isChecked
-        }
-    }*/
-
 
 
     private fun logSteps(text: String) {

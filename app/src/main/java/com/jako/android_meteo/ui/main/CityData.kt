@@ -1,7 +1,6 @@
 package com.jako.testtask_eastwind.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.jako.android_meteo.R
 import com.jako.android_meteo.adapters.OnItemListClick
-import com.jako.android_meteo.ui.main.TAG
 import kotlinx.android.synthetic.main.data_city.*
 import kotlinx.android.synthetic.main.data_city.view.*
 import java.util.*

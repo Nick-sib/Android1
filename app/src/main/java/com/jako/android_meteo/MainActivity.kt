@@ -2,10 +2,9 @@ package com.jako.android_meteo
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import com.google.android.material.snackbar.Snackbar
 import com.jako.testtask_eastwind.ui.main.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,14 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
 
-
         /*b_Setting.setOnClickListener {
                 startActivity(Intent(this, SelectCity::class.java).apply{
                     putExtra(MESSAGE_CHECKBOX, true)
                 })}*/
-
-
-
 
         logSteps("onCreate")
     }
@@ -84,5 +79,17 @@ class MainActivity : AppCompatActivity() {
     private fun logSteps(text: String) {
         //Toast.makeText(this, "$ClassName : $text", Toast.LENGTH_SHORT).show()
         Log.d(com.jako.android_meteo.ui.main.TAG, "$ClassName : $text")
+    }
+
+    fun button_click(view: View) {
+        when (view.id) {
+            R.id.mb_cancel -> view_pager.currentItem = 0
+            R.id.mb_apply -> Snackbar.make(view, "Сохранить как списко по умолчанию?", Snackbar.LENGTH_LONG)
+                .setAction("Сохранить") {
+                    Log.d(com.jako.android_meteo.ui.main.TAG, "При перезагрузки апп раставить чекбоксы")
+                }.show()
+            else -> Log.d(com.jako.android_meteo.ui.main.TAG, "button_click: ")
+        }
+
     }
 }
