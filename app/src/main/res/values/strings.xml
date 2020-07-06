@@ -4,6 +4,8 @@
     <string name="tab_text_1">Погода в городе</string>
     <string name="tab_text_2">Выбор города</string>
     <string name="tab_text_3">text2</string>
+    <string name="b_back">Вернуться</string>
+    <string name="b_apply">Применить</string>
 
     <string-array name="citys_array">
         <item>Амстердам</item>

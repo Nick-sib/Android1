@@ -53,4 +53,6 @@
     <string name="tab_text_1">Weather in the city</string>
     <string name="tab_text_2">The citys</string>
     <string name="tab_text_3">text2</string>
+    <string name="b_back">Back</string>
+    <string name="b_apply">Apply</string>
 </resources>
