@@ -31,7 +31,7 @@ object common_weather {
         0
     )
 
-    val API_KEY = "0564df4b9e42688a83fa370a95d5478f"
+    val API_KEY = ""
     val UNITS = "metric"
     //val CITY_ID = 1496747
     val LANG = "ru"
