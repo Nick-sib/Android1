@@ -2,32 +2,63 @@ package com.jako.android_meteo.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.jako.android_meteo.R
+import com.jako.android_meteo.model.WeatherData
+import com.jako.android_meteo.model.WeatherRequest
 
 
-class CityListAdapter(private var workList: List<String>):
-    RecyclerView.Adapter<CityViewHolder>() {
+class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
+    private val errorData = WeatherData("Request",0)
 
-    private val fullList: List<String> = ArrayList(workList)
+    private var workList: ArrayList<WeatherData> = arrayListOf()
+    private var fullList: ArrayList<WeatherData> = ArrayList(workList)
 
     var onItemListClickListener: OnItemListClick? = null
+
+    var showedCity = -1
+
+    fun setLists(inArray: List<String>, default_id: Int){
+        if (workList.size == 0) {
+            for (inData in inArray){
+                val s = inData.split(',')
+                workList.add(WeatherData(s[0],s[1].toInt()))
+                workList[workList.size-1].apply {
+                    isCheck = id == default_id
+                    tmpCheck = isCheck
+                }
+
+            }
+            fullList = ArrayList(workList)}
+    }
+
+    fun setData(request: WeatherRequest, dayWeek: String): WeatherData {
+        for (data in fullList)
+            if (data.id == request.id) {
+                data.isLoaded = true
+                data.dayWeek = dayWeek
+                data.overcast = request.weather[0].description.capitalize()
+                data.temp = request.main.temp.toInt()
+                data.humidity = request.main.humidity
+                data.wind = request.wind.speed
+                return data
+            }
+        return errorData
+    }
 
     fun applyFilter(value: String) {
         workList =
             if (value.length > 1)
                 fullList.filter {
-                    it.toLowerCase().contains(value.toLowerCase())
-            } else ArrayList(fullList)
+                    it.cityName.toLowerCase().contains(value.toLowerCase())
+                } as ArrayList<WeatherData> else ArrayList(fullList)
         notifyDataSetChanged()
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return CityViewHolder(inflater.inflate(R.layout.select_city_item, parent, false), parent, onItemListClickListener)
+        val view = inflater.inflate(R.layout.select_city_item, parent, false)
+        return CityViewHolder(view, parent, onItemListClickListener)
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
@@ -35,5 +66,48 @@ class CityListAdapter(private var workList: List<String>):
     }
 
     override fun getItemCount(): Int = workList.size
+
+    fun getFirst(): WeatherData {
+        for (i in 0..fullList.size-1) {
+            if (fullList[i].isCheck) {
+                showedCity = i
+                return fullList[i]
+            }
+        }
+        showedCity = -1
+        return errorData
+    }
+
+    fun getNext(): WeatherData {
+        for (i in (showedCity+1)..(fullList.size-1)){
+            if (fullList[i].isCheck) {
+                showedCity = i
+                return fullList[i]
+            }
+        }
+        for (i in 0..showedCity){
+            if (fullList[i].isCheck) {
+                showedCity = i
+                return fullList[i]
+            }
+        }
+        showedCity = -1
+        return errorData
+    }
+
+    fun applyCheck() {
+        for (data in workList) {
+            data.isCheck = data.tmpCheck
+        }
+        notifyDataSetChanged()
+    }
+
+    fun cancelCheck() {
+        for (data in workList) {
+            data.tmpCheck = data.isCheck
+        }
+        notifyDataSetChanged()
+    }
+
 
 }

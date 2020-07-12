@@ -1,13 +1,16 @@
 package com.jako.testtask_eastwind.ui.main
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.jako.android_meteo.R
 import com.jako.android_meteo.adapters.OnItemListClick
+import com.jako.android_meteo.inet.common_weather
+import com.jako.android_meteo.model.WeatherData
 import kotlinx.android.synthetic.main.data_city.*
 import kotlinx.android.synthetic.main.data_city.view.*
 import java.util.*
@@ -18,13 +21,28 @@ import java.util.*
  */
 class CityData : Fragment(), OnItemListClick {
 
-    private lateinit var pageViewModel: PageViewModel
+    lateinit var viewModel: WeatherViewModel
+
     private val delmeData = DoubleArray(7)
+    private lateinit var s_humidity: String
+    private lateinit var s_wind: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 2)
+
+        viewModel = ViewModelProvider(activity!!).get(WeatherViewModel::class.java)
+
+        s_humidity = resources.getString(R.string.t_humidity)
+        s_wind = resources.getString(R.string.t_wind)
+
+        viewModel.weatherData.observe(
+            this,
+            androidx.lifecycle.Observer {
+                compliteData(it)
+            })
+
+        if (savedInstanceState == null) {
+            common_weather.getData(this, Handler(), viewModel.DEFAULT_ID)
         }
     }
 
@@ -39,10 +57,23 @@ class CityData : Fragment(), OnItemListClick {
         }
         root.linechart.setChartData(delmeData, "Недельный прогноз")
 
-       // pageViewModel.text.observe(this, Observer<String> {
-          //  textView.setText(R.string.tab_text_1)
-        //})
+        val listner = View.OnClickListener{
+            onSelectItem(viewModel.adapter.getNext())
+        }
+
+        root.tv_CityName.setOnClickListener(listner)
+        root.setOnClickListener(listner)
+
         return root
+    }
+
+    fun compliteData(data: WeatherData) {
+        tv_CityName.text = data.cityName
+        tv_DayOfWeek.text = data.dayWeek
+        tv_Cloudiness.text = data.overcast
+        tv_Temperature.text = data.temp.toString()
+        tv_Humidity.text = String.format(s_humidity, data.humidity, "%")
+        tv_Wind.text = String.format(s_wind, data.wind)
     }
 
     companion object {
@@ -67,9 +98,11 @@ class CityData : Fragment(), OnItemListClick {
         }
     }
 
-    override fun onSelectItem(title: String) {
-        tv_CityName.text = title
-    }
+    override fun onSelectItem(weatherData: WeatherData) {
+        if (weatherData.isLoaded) {
+            compliteData(weatherData)
+        } else common_weather.getData(this, Handler(), weatherData.id)
 
+    }
 
 }
