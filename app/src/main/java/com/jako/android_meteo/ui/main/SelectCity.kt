@@ -3,33 +3,24 @@ package com.jako.android_meteo.ui.main
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jako.android_meteo.R
 import com.jako.android_meteo.adapters.CityListAdapter
-import com.jako.testtask_eastwind.ui.main.CityData
-import com.jako.testtask_eastwind.ui.main.WeatherViewModel
+import com.jako.android_meteo.model.WeatherViewModel
 import kotlinx.android.synthetic.main.city_select.view.*
+import java.util.*
 
 
 const val TAG = "myLOG"
 
 class SelectCity: Fragment() {
-
-    private val ANIMATION_DURATION = 200L
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +33,8 @@ class SelectCity: Fragment() {
             override fun beforeTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) {
-                (root.rv_citys.adapter as CityListAdapter).applyFilter(s.toString().toLowerCase())
+                (root.rv_citys.adapter as CityListAdapter).applyFilter(
+                    s.toString().toLowerCase(Locale.ROOT))
             }
         })
 
@@ -51,7 +43,7 @@ class SelectCity: Fragment() {
         return root
     }
 
-    fun setupAdapter(root: View) {
+    private fun setupAdapter(root: View) {
         root.rv_citys.setHasFixedSize(true)
 
         root.rv_citys.addItemDecoration(
@@ -71,6 +63,9 @@ class SelectCity: Fragment() {
 
 
     companion object {
+
+        private const val ANIMATION_DURATION = 200L
+
         /**
          * The fragment argument representing the section number for this
          * fragment.

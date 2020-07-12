@@ -110,7 +110,7 @@ public class LineChartView extends View {
         int distance;
         int distanceIndex = 0;
         int distanceMultiplier = 1;
-        int numberOfLines = MIN_LINES;
+        int numberOfLines;
 
         do {
             distance = DISTANCES[distanceIndex] * distanceMultiplier;

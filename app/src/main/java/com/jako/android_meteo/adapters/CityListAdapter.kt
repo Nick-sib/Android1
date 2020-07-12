@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jako.android_meteo.R
 import com.jako.android_meteo.model.WeatherData
 import com.jako.android_meteo.model.WeatherRequest
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
@@ -16,7 +18,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
 
     var onItemListClickListener: OnItemListClick? = null
 
-    var showedCity = -1
+    private var showedCity = -1
 
     fun setLists(inArray: List<String>, default_id: Int){
         if (workList.size == 0) {
@@ -50,7 +52,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
         workList =
             if (value.length > 1)
                 fullList.filter {
-                    it.cityName.toLowerCase().contains(value.toLowerCase())
+                    it.cityName.toLowerCase(Locale.ROOT).contains(value.toLowerCase(Locale.ROOT))
                 } as ArrayList<WeatherData> else ArrayList(fullList)
         notifyDataSetChanged()
     }
@@ -58,7 +60,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.select_city_item, parent, false)
-        return CityViewHolder(view, parent, onItemListClickListener)
+        return CityViewHolder(view, onItemListClickListener)
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
@@ -68,7 +70,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
     override fun getItemCount(): Int = workList.size
 
     fun getFirst(): WeatherData {
-        for (i in 0..fullList.size-1) {
+        for (i in 0 until fullList.size) {
             if (fullList[i].isCheck) {
                 showedCity = i
                 return fullList[i]
@@ -79,7 +81,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
     }
 
     fun getNext(): WeatherData {
-        for (i in (showedCity+1)..(fullList.size-1)){
+        for (i in (showedCity+1) until (fullList.size)){
             if (fullList[i].isCheck) {
                 showedCity = i
                 return fullList[i]

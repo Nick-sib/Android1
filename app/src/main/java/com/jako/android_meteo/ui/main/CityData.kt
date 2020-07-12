@@ -1,4 +1,4 @@
-package com.jako.testtask_eastwind.ui.main
+package com.jako.android_meteo.ui.main
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jako.android_meteo.R
 import com.jako.android_meteo.adapters.OnItemListClick
-import com.jako.android_meteo.inet.common_weather
+import com.jako.android_meteo.inet.CommonWeather
 import com.jako.android_meteo.model.WeatherData
+import com.jako.android_meteo.model.WeatherViewModel
+import com.jako.android_meteo.model.WeatherViewModel.Companion.DEFAULT_ID
 import kotlinx.android.synthetic.main.data_city.*
 import kotlinx.android.synthetic.main.data_city.view.*
 import java.util.*
@@ -19,21 +21,22 @@ import java.util.*
 /**
  * A placeholder fragment containing a simple view.
  */
-class CityData : Fragment(), OnItemListClick {
+class
+CityData : Fragment(), OnItemListClick {
 
     lateinit var viewModel: WeatherViewModel
 
     private val delmeData = DoubleArray(7)
-    private lateinit var s_humidity: String
-    private lateinit var s_wind: String
+    private lateinit var sHumidity: String
+    private lateinit var sWind: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(activity!!).get(WeatherViewModel::class.java)
 
-        s_humidity = resources.getString(R.string.t_humidity)
-        s_wind = resources.getString(R.string.t_wind)
+        sHumidity = resources.getString(R.string.t_humidity)
+        sWind = resources.getString(R.string.t_wind)
 
         viewModel.weatherData.observe(
             this,
@@ -42,7 +45,7 @@ class CityData : Fragment(), OnItemListClick {
             })
 
         if (savedInstanceState == null) {
-            common_weather.getData(this, Handler(), viewModel.DEFAULT_ID)
+            CommonWeather.getData(this, Handler(), DEFAULT_ID)
         }
     }
 
@@ -67,13 +70,13 @@ class CityData : Fragment(), OnItemListClick {
         return root
     }
 
-    fun compliteData(data: WeatherData) {
+    private fun compliteData(data: WeatherData) {
         tv_CityName.text = data.cityName
         tv_DayOfWeek.text = data.dayWeek
         tv_Cloudiness.text = data.overcast
         tv_Temperature.text = data.temp.toString()
-        tv_Humidity.text = String.format(s_humidity, data.humidity, "%")
-        tv_Wind.text = String.format(s_wind, data.wind)
+        tv_Humidity.text = String.format(sHumidity, data.humidity, "%")
+        tv_Wind.text = String.format(sWind, data.wind)
     }
 
     companion object {
@@ -101,7 +104,7 @@ class CityData : Fragment(), OnItemListClick {
     override fun onSelectItem(weatherData: WeatherData) {
         if (weatherData.isLoaded) {
             compliteData(weatherData)
-        } else common_weather.getData(this, Handler(), weatherData.id)
+        } else CommonWeather.getData(this, Handler(), weatherData.id)
 
     }
 
