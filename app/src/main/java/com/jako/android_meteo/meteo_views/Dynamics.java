@@ -37,11 +37,6 @@ public class Dynamics {
         lastTime = now;
     }
 
-    public void setVelocity(float velocity, long now) {
-        this.velocity = velocity;
-        lastTime = now;
-    }
-
     public void setTargetPosition(float targetPosition, long now) {
         this.targetPosition = targetPosition;
         lastTime = now;
@@ -67,14 +62,6 @@ public class Dynamics {
 
     public float getPosition() {
         return position;
-    }
-
-    public float getTargetPos() {
-        return targetPosition;
-    }
-
-    public float getVelocity() {
-        return velocity;
     }
 
 }

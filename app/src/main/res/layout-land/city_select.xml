@@ -51,7 +51,7 @@
         android:layout_marginEnd="@dimen/button_margin"
 
         android:text="@string/b_back"
-        android:onClick="button_click"
+        android:onClick="buttonClick"
 
         app:layout_constraintBottom_toBottomOf="@+id/mb_apply"
         app:layout_constraintEnd_toStartOf="@+id/mb_apply"
@@ -65,7 +65,7 @@
         android:layout_marginBottom="@dimen/button_margin"
 
         android:text="@string/b_apply"
-        android:onClick="button_click"
+        android:onClick="buttonClick"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

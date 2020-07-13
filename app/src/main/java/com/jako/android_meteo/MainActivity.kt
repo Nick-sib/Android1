@@ -1,94 +1,54 @@
 package com.jako.android_meteo
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.BuildCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.jako.testtask_eastwind.ui.main.SectionsPagerAdapter
+import com.jako.android_meteo.ui.main.CityData
+import com.jako.android_meteo.adapters.SectionsPagerAdapter
+import com.jako.android_meteo.model.WeatherViewModel
+import com.jako.android_meteo.model.WeatherViewModel.Companion.DEFAULT_ID
 import kotlinx.android.synthetic.main.activity_main.*
+import java.nio.file.attribute.AclEntry
 
 
 class MainActivity : AppCompatActivity() {
-    val ClassName = "MainActivity.class"
+
+    private lateinit var viewModel: WeatherViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
+        viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java).also {
+            it.adapter.setLists(resources.getStringArray(R.array.citys_array).toList(), DEFAULT_ID)
+        }
 
-        /*b_Setting.setOnClickListener {
-                startActivity(Intent(this, SelectCity::class.java).apply{
-                    putExtra(MESSAGE_CHECKBOX, true)
-                })}*/
+        view_pager.adapter = SectionsPagerAdapter(supportFragmentManager)
 
-        logSteps("onCreate")
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        logSteps("onStart")
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-        logSteps("onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        logSteps("onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        logSteps("onDestroy")
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        logSteps("onSaveInstanceState")
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-
-        logSteps("onRestoreInstanceState")
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        logSteps("onStop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-
-        logSteps("onRestart")
-    }
-
-
-    private fun logSteps(text: String) {
-        //Toast.makeText(this, "$ClassName : $text", Toast.LENGTH_SHORT).show()
-        Log.d(com.jako.android_meteo.ui.main.TAG, "$ClassName : $text")
-    }
-
-    fun button_click(view: View) {
+    fun buttonClick(view: View) {
         when (view.id) {
-            R.id.mb_cancel -> view_pager.currentItem = 0
-            R.id.mb_apply -> Snackbar.make(view, "Сохранить как списко по умолчанию?", Snackbar.LENGTH_LONG)
+            R.id.mb_cancel -> {
+                viewModel.adapter.cancelCheck()
+                view_pager.currentItem = 0}
+            R.id.mb_apply -> {
+                viewModel.adapter.applyCheck()
+                (supportFragmentManager.fragments[0] as CityData).onSelectItem(viewModel.adapter.getFirst())
+
+                Snackbar.make(view, "Сохранить как списко по умолчанию?", Snackbar.LENGTH_LONG)
                 .setAction("Сохранить") {
-                    Log.d(com.jako.android_meteo.ui.main.TAG, "При перезагрузки апп раставить чекбоксы")
+                    Log.d("myLOG", "При перезагрузки апп раставить чекбоксы")
                 }.show()
-            else -> Log.d(com.jako.android_meteo.ui.main.TAG, "button_click: ")
+                view_pager.currentItem = 0}
+            else -> Log.d("myLOG", "button_click: ")
         }
 
     }
