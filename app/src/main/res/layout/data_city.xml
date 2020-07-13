@@ -50,11 +50,13 @@
 <!--пока всё еще заглушка-->
     <ImageView
         android:id="@+id/iv_Cloudiness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginTop="10dp"
 
-        android:src="@drawable/partly_cloudy"
+
+        android:src="@drawable/w01d2x"
+        android:scaleType="centerCrop"
 
         app:layout_constraintStart_toStartOf="@+id/tv_CityName"
         app:layout_constraintTop_toBottomOf="@+id/tv_Cloudiness" />

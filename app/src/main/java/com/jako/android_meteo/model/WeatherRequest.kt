@@ -18,7 +18,8 @@ class Coord (
 
 class Weather(
     //val main: String,
-    val description: String)
+    val description: String,
+    val icon: String)
 
 class Main (
     val temp: Float,

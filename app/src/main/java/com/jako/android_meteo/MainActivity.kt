@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
 
                 Snackbar.make(view, "Сохранить как списко по умолчанию?", Snackbar.LENGTH_LONG)
                 .setAction("Сохранить") {
-                    Log.d(com.jako.android_meteo.ui.main.TAG, "При перезагрузки апп раставить чекбоксы")
+                    Log.d("myLOG", "При перезагрузки апп раставить чекбоксы")
                 }.show()
                 view_pager.currentItem = 0}
-            else -> Log.d(com.jako.android_meteo.ui.main.TAG, "button_click: ")
+            else -> Log.d("myLOG", "button_click: ")
         }
 
     }

@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.city_select.view.*
 import java.util.*
 
 
-const val TAG = "myLOG"
-
 class SelectCity: Fragment() {
 
     override fun onCreateView(

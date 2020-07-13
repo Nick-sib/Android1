@@ -2,6 +2,7 @@ package com.jako.android_meteo.ui.main
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,13 @@ CityData : Fragment(), OnItemListClick {
         tv_Temperature.text = data.temp.toString()
         tv_Humidity.text = String.format(sHumidity, data.humidity, "%")
         tv_Wind.text = String.format(sWind, data.wind)
+
+        val resID = resources.getIdentifier(
+            data.icon,
+            "drawable",
+            context?.packageName
+        )
+        iv_Cloudiness.setImageResource(resID)
     }
 
     companion object {

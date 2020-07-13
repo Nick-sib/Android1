@@ -1,5 +1,6 @@
 package com.jako.android_meteo.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +44,7 @@ class CityListAdapter: RecyclerView.Adapter<CityViewHolder>() {
                 data.temp = request.main.temp.toInt()
                 data.humidity = request.main.humidity
                 data.wind = request.wind.speed
+                data.icon = "w${request.weather[0].icon}2x"
                 return data
             }
         return errorData

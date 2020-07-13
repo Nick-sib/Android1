@@ -8,7 +8,6 @@ import com.jako.android_meteo.model.Main
 import com.jako.android_meteo.model.Weather
 import com.jako.android_meteo.model.WeatherRequest
 import com.jako.android_meteo.model.Wind
-import com.jako.android_meteo.ui.main.TAG
 import com.jako.android_meteo.ui.main.CityData
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -22,7 +21,7 @@ object CommonWeather {
 
     @JvmStatic
     private val errRequest = WeatherRequest(
-        arrayOf(Weather("")),
+        arrayOf(Weather("","")),
         Main(0f,0),
         Wind(0f),
         "Город не найден",
@@ -58,14 +57,14 @@ object CommonWeather {
 
             }
             catch (e: Exception) {
-                Log.e(TAG, "Fail connection", e)
+                Log.e("myLOG", "Fail connection", e)
                 handler.post {
                     cityData.viewModel.setWeatherData(errRequest)
                 }
                 e.printStackTrace()
             }
             catch (e: MalformedURLException) {
-                Log.e(TAG, "Fail URI", e)
+                Log.e("myLOG", "Fail URI", e)
                 handler.post{
                     cityData.viewModel.setWeatherData(errRequest)
                 }
