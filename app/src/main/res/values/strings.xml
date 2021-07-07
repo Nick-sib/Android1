@@ -1,3 +1,60 @@
 <resources>
     <string name="app_name">Android_meteo</string>
+    <string name="invate_input_city_name">Введите имя города</string>
+    <string name="tab_text_1">Погода в городе</string>
+    <string name="tab_text_2">Выбор города</string>
+    <string name="tab_text_3">text2</string>
+    <string name="b_back">Вернуться</string>
+    <string name="b_apply">Применить</string>
+
+    <string-array name="citys_array">
+        <item>Амстердам</item>
+        <item>Андорра-ла-Велья</item>
+        <item>Афины</item>
+        <item>Белград</item>
+        <item>Берлин</item>
+        <item>Берн</item>
+        <item>Братислава</item>
+        <item>Брюссель</item>
+        <item>Будапешт</item>
+        <item>Бухарест</item>
+        <item>Вадуц</item>
+        <item>Валлетта</item>
+        <item>Варшава</item>
+        <item>Ватикан</item>
+        <item>Вена</item>
+        <item>Вильнюс</item>
+        <item>Дублин</item>
+        <item>Загреб</item>
+        <item>Киев</item>
+        <item>Кишинёв</item>
+        <item>Копенгаген</item>
+        <item>Лиссабон</item>
+        <item>Лондон</item>
+        <item>Любляна</item>
+        <item>Люксембург</item>
+        <item>Мадрид</item>
+        <item>Минск</item>
+        <item>Монако</item>
+        <item>Москва</item>
+        <item>Новосибирск</item>
+        <item>Осло</item>
+        <item>Париж</item>
+        <item>Подгорица</item>
+        <item>Прага</item>
+        <item>Рейкьявик</item>
+        <item>Рига</item>
+        <item>Рим</item>
+        <item>Сан-Марино</item>
+        <item>Сараево</item>
+        <item>Скопье</item>
+        <item>София</item>
+        <item>Стокгольм</item>
+        <item>Тирана</item>
+        <item>Таллин</item>
+        <item>Хельсинки</item>
+    </string-array>
+
+
+
 </resources>
